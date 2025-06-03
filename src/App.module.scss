@@ -1,0 +1,17 @@
+@use './utils/mediaqueries.scss' as *;
+.desktopNav {
+  display: block;
+
+  @media #{$phone} {
+    display: none;
+  }
+}
+
+.mobileNav {
+  display: none;
+
+  @media #{$phone} {
+    display: block;
+  }
+}
+

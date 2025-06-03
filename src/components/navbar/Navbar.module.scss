@@ -1,0 +1,42 @@
+@use '../../utils/colors.scss' as colors;
+.navbar {
+  position: fixed;       // fiksira navbar pri vrhu
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 1%;
+  width: 100%;          // pun širina ekrana
+	height:10%;
+  z-index: 1000;        // dovoljno visok z-index da bude iznad ostalog sadržaja
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  // logo levo, meni desno
+}
+
+.logo img {
+  width: 90px;
+  height: auto;
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+
+  li a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: colors.$hover-red;
+    }
+  }
+}
+
