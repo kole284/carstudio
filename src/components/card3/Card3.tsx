@@ -22,17 +22,18 @@ function Card3({ image, mainTitle, services }: CardProps3) {
         <img src={image} alt="Glavna slika" className={styles.image} />
         <h3 className={styles.mainTitle}>{mainTitle}</h3>
       </div>
-
+      
       {/* Scrollable content area */}
       <div className={styles.content}>
         {services.map((service, i) => (
-          <div key={service.title} className={styles.serviceContainer}>
-            {/* Service title kao svoj container */}
-            <div 
-              className={styles.serviceTitleContainer}
-              onMouseEnter={() => setHoverIndex(i)}
-              onMouseLeave={() => setHoverIndex(null)}
-            >
+          <div 
+            key={service.title} 
+            className={styles.serviceContainer}
+            onMouseEnter={() => setHoverIndex(i)}
+            onMouseLeave={() => setHoverIndex(null)}
+          >
+            {/* Service title */}
+            <div className={styles.serviceTitleContainer}>
               <h4 className={styles.serviceTitle}>{service.title}</h4>
             </div>
             
