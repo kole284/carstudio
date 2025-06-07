@@ -29,7 +29,7 @@ function Hero() {
       <div
         className={styles.slide}
         style={{
-          backgroundImage: `url(/assets/hero/image4.jpg)`,
+          backgroundImage: `url(/assets/hero/bg.jpg)`,
           backgroundPosition: `center ${offsetY * 0.5}px`, // Precizniji background-position
           transform: `translateY(${offsetY * 0.5}px)`, // Alternativno rešenje
         }}
