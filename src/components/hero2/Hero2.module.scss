@@ -14,7 +14,7 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
   padding: 4rem 2rem;
   box-sizing: border-box;
 }
@@ -41,18 +41,14 @@
 }
 
 .card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 3rem;
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: 1200px;
-  margin-bottom: 3rem;
-  box-sizing: border-box;
-  padding: 0 1rem;
-  
+   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2rem; // ili koliko ti odgovara
+  flex-wrap: nowrap; // sprečava prelazak u drugi red
+  overflow-x: auto; // ako želiš horizontalni scroll na manjim ekranima
+  overflow-y: hidden;
+  padding-bottom: 1rem; // ako koristiš scroll bar  
   & > div {
     width: 300px;
     transition: transform 0.1s ease-out; // smooth transition za parallax

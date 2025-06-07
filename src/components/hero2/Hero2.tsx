@@ -48,7 +48,6 @@ function Hero2() {
   const parallaxOffset = isMobile ? 0 : scrollY;
 
   return (
-    <section id="hero2" ref={ref} className={styles.hero2}>
       <div className={styles.wrapper}>
         <img
           src="/assets/hero2/line.svg"
@@ -96,7 +95,6 @@ function Hero2() {
           <Link to="services" className={styles.button}>Više usluga</Link>
         </div>
       </div>
-    </section>
   );
 }
 

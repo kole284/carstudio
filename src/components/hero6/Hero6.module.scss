@@ -12,7 +12,7 @@
   position: relative;
   z-index: 1;
   transition: z-index 0.3s ease;
-  overflow-x: hidden;
+  overflow: hidden;
   
   @media #{$phone} {
     flex-direction: column;
