@@ -5,35 +5,35 @@ function Hero10() {
   const [offsetY, setOffsetY] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => setOffsetY(window.scrollY);
+    const handleScroll = () => {
+      setOffsetY(window.pageYOffset);
+    };
+
     window.addEventListener('scroll', handleScroll);
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleClick = () => {
-    const hero11 = document.getElementById('hero11');
-    if (hero11) {
-      hero11.scrollIntoView({ behavior: 'smooth' });
+    const hero6 = document.getElementById('hero6');
+    if (hero6) {
+      hero6.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
-  return (
+    return (
     <div className={styles.wrapper}>
-      {/* Paralaks pozadina */}
       <div
-        className={styles.parallax}
+        className={styles.background}
         style={{ transform: `translateY(${offsetY * 0.5}px)` }}
       />
-      
-      {/* Sadržaj sa parallax efektom */}
       <div
         className={styles.content}
-        style={{ transform: `translateY(${offsetY * 0.2}px)` }}
+        style={{ transform: `translateY(${offsetY * 0.3}px)` }}
       >
-        <h1>O nama!</h1>
+        <h1>Kontaktirajte nas</h1>
         <button className={styles.button} onClick={handleClick}>
-          Upoznajte nas!
+          Više informacija
         </button>
       </div>
     </div>

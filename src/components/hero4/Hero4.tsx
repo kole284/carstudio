@@ -37,7 +37,7 @@ function Hero4() {
     </div>
         <div className={styles.textContainer}>
       <h1>Kontaktirajte nas</h1>
-      <Link to="contact" className={styles.button}>Pošaljite poruku</Link>
+      <Link to="/contact" className={styles.button}>Pošaljite poruku</Link>
     </div>
 
   </div>

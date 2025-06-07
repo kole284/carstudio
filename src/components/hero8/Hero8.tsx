@@ -21,11 +21,11 @@ function Hero8() {
   return (
     <div className={styles.wrapper}>
       <div
-        className={styles.parallax}
+        className={styles.background}
         style={{ transform: `translateY(${offsetY * 0.5}px)` }}
       />
       <div className={styles.content}
-      style={{ transform: `translateY(${offsetY * 0.5}px)` }}
+      style={{ transform: `translateY(${offsetY * 0.3}px)` }}
         >
         <h1>Naše usluge</h1>
         <button className={styles.button} onClick={handleClick}>Pogledajte usluge</button>

@@ -1,22 +1,16 @@
 import styles from './Card2.module.scss';
+import { ReactNode } from 'react';
 
 type CardProps = {
   image: string;
-  text: string;
-  link?: string; // dodato
+  children: ReactNode;
 };
 
-function Card2({ image, text, link }: CardProps) {
+function Card2({ image, children }: CardProps) {
   return (
     <div className={styles.card}>
       <img src={image} alt="Card" className={styles.image} />
-      {link ? (
-        <a href={link} target="_blank" rel="noopener noreferrer" className={styles.link}>
-          <p className={styles.text}>{text}</p>
-        </a>
-      ) : (
-        <p className={styles.text}>{text}</p>
-      )}
+      <div className={styles.text}>{children}</div>
     </div>
   );
 }

@@ -7,30 +7,19 @@ function Hero() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setOffsetY(window.pageYOffset || window.scrollY);
+      setOffsetY(window.pageYOffset);
     };
 
-    // Dodaj event listener
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    // Pozovi jednom na početak da dobiješ početnu vrednost
-    handleScroll();
+    window.addEventListener('scroll', handleScroll);
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Debug - možeš ukloniti kada radiš
-  console.log('Current offsetY:', offsetY);
-
-  return (
-    <section id="hero" className={styles.hero}>
+ return (
+    <section id="hero" className={styles.wrapper}>
       <div
         className={styles.slide}
         style={{
-          backgroundImage: `url(/assets/hero/bg.jpg)`,
-          backgroundPosition: `center ${offsetY * 0.5}px`, // Precizniji background-position
           transform: `translateY(${offsetY * 0.5}px)`, // Alternativno rešenje
         }}
       />
@@ -38,11 +27,11 @@ function Hero() {
         <h1 style={{ transform: `translateY(${offsetY * 0.2}px)` }}>
           CarStudio
         </h1>
-        <p style={{ transform: `translateY(${offsetY * 0.15}px)` }}>
+        <p style={{ transform: `translateY(${offsetY * 0.3}px)` }}>
           Profesionalna usluga za vaš automobil
         </p>
         <Link
-          to="/about"
+          to="/contact"
           className={styles.button}
           style={{ transform: `translateY(${offsetY * 0.1}px)` }}
         >
