@@ -1,5 +1,5 @@
 import styles from './Card2.module.scss';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 type CardProps = {
   image: string;
