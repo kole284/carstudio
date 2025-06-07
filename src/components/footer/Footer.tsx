@@ -1,23 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Footer.module.scss';
-import { FaGithub } from 'react-icons/fa';
 
 function Footer() {
   const [showPopup, setShowPopup] = useState(false);
+
+  // Prikaži info u konzoli prilikom mountovanja komponente
+  useEffect(() => {
+    console.log('Website made by:');
+    console.log('kole284: https://github.com/kole284');
+    console.log('KaluMen: https://github.com/KaluMen');
+  }, []);
 
   return (
     <>
       <footer className={styles.footer}>
         <div className={styles.container}>
-        Website made by:
-        <FaGithub className={styles.githubIcon} />
-        <a href="https://github.com/kole284" target="_blank">kole284</a>
-        &amp;
-        <FaGithub className={styles.githubIcon} />
-        <a href="https://github.com/KaluMen" target="_blank">KaluMen</a>
+          © CarStudio 2025
         </div>
-       <button className={styles.popupButton} onClick={() => setShowPopup(true)}>
-       
+        <button className={styles.popupButton} onClick={() => setShowPopup(true)}>
         </button>
       </footer>
 
@@ -31,7 +31,11 @@ function Footer() {
             <p>Md Tan Uirul</p>
             <p>Bzzrincantation</p>
             <p>Freepik</p>
-            <p><a href="https://www.freepik.com" target="_blank" rel="noopener noreferrer">Flaticon</a></p>
+            <p>
+              <a href="https://www.freepik.com" target="_blank" rel="noopener noreferrer">
+                Flaticon
+              </a>
+            </p>
             <button onClick={() => setShowPopup(false)}>Zatvori</button>
           </div>
         </div>
