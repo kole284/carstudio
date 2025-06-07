@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Hero10.module.scss';
 
 function Hero10() {
@@ -32,9 +33,9 @@ function Hero10() {
         style={{ transform: `translateY(${offsetY * 0.3}px)` }}
       >
         <h1>Kontaktirajte nas</h1>
-        <button className={styles.button} onClick={handleClick}>
+        <Link to="/contact"className={styles.button} onClick={handleClick}>
           Više informacija
-        </button>
+        </Link>
       </div>
     </div>
   );
