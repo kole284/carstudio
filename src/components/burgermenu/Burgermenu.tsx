@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import styles from './Burgermenu.module.scss';
+import { NAV_LINKS } from '../../constants/routes';
 
 function Burgermenu() {
   const [open, setOpen] = useState(false);
@@ -10,10 +12,10 @@ function Burgermenu() {
 
   return (
     <div className={styles.wrapper}>
-      {/* Burger ikona - sakrij kad je open */}
-      <div 
-        className={styles.burgermenu} 
-        onClick={toggleMenu} 
+      {/* Burger ikona */}
+      <div
+        className={styles.burgermenu}
+        onClick={toggleMenu}
         style={{ display: open ? 'none' : 'flex' }}
       >
         <span></span>
@@ -21,9 +23,8 @@ function Burgermenu() {
         <span></span>
       </div>
 
-      {/* Overlay meni - uvek renderuj */}
+      {/* Overlay meni */}
       <nav className={`${styles.navbar} ${open ? styles.open : ''}`}>
-        {/* Logo na vrhu */}
         <div className={styles.logo}>
           <img src="/logo.png" alt="Logo" />
         </div>
@@ -31,10 +32,17 @@ function Burgermenu() {
         <button className={styles.closeButton} onClick={toggleMenu}>×</button>
 
         <ul>
-          <li><a href="#home" onClick={toggleMenu}>Početna</a></li>
-          <li><a href="#about" onClick={toggleMenu}>O nama</a></li>
-          <li><a href="#services" onClick={toggleMenu}>Usluge</a></li>
-          <li><a href="#contact" onClick={toggleMenu}>Kontakt</a></li>
+          {NAV_LINKS.map(({ path, label }) => (
+            <li key={path}>
+              <NavLink
+                to={path}
+                onClick={toggleMenu}
+                className={({ isActive }) => (isActive ? styles.active : '')}
+              >
+                {label}
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </nav>
     </div>

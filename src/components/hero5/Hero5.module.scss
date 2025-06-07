@@ -1,0 +1,52 @@
+@use '../../utils/colors.scss' as colors;
+@use '../../utils/mediaqueries.scss' as *;
+
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  background-color: colors.$white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/assets/hero5/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  padding: 2rem 3rem;
+
+  box-sizing: border-box;  // <-- dodato
+  overflow-x: hidden;      // <-- dodato
+  @media #{$phone} {
+  background-image:url('/assets/hero5/bg-p.jpg')}
+}
+h1 {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 5rem;
+  color: colors.$white;
+  font-family:'Oswald';
+  margin: 0;
+  @media #{$phone} {
+    font-size:4rem;
+    }
+}
+
+
+.button {
+  background: colors.$red;
+  color: colors.$white;
+  text-decoration: none;
+  border-radius:5px;
+  padding: 0.8rem 1.5rem;
+  font-family:'Oswald';
+  font-weight:600;
+  font-size: 1.5rem;
+  transition: background 0.3s ease;
+  border: none;        // uklanja default border
+  outline: none;       // uklanja default outline
+
+  &:hover {
+    background: colors.$hover-red;
+  }
+}
+

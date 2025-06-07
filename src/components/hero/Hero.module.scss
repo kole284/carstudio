@@ -1,5 +1,6 @@
 @use '../../utils/mediaqueries' as *;
 @use '../../utils/colors' as colors;
+
 .hero {
   position: relative;
   width: 100%;
@@ -7,13 +8,9 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  justify-content: flex-end; // desno na desktopu
+  justify-content: center; // desno na desktopu
   text-align: center;
   color: colors.$white;
-
-  @media #{$phone} {
-    justify-content:flex-start ; // centriraj na mobilnom
-  }
 }
 
 .slide {
@@ -25,8 +22,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
+  transition:transform 0.2s ease-out;
   z-index: 0;
 }
 
@@ -36,35 +32,38 @@
 }
 
 .content {
-  position: relative;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 1rem;
-  border-radius: 10px;
-  width: 100%;
-  text-align: right; // cela kutija i tekst desno na desktopu
+  margin-top: 5%;
+  width: fit-content;
+  max-width: 100%;
 
   h1 {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0;
-    margin-right:1%;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     font-family: 'Oswald';
     font-size: 8rem;
-    text-align: right;
+    margin-bottom: 0;
   }
 
   p {
-    font-family:'Oswald';
-    font-weight:200;
-    margin-top: 10rem;
-    margin-bottom:1rem;
+    margin-top: 0;
+    font-family: 'Oswald';
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 200;
+    margin-bottom: 1rem;
     font-size: 3rem;
-    text-align: right;
   }
 
   @media #{$phone} {
     text-align: center; // cela kutija centrirana na mobilnom
+    width: 100%;
 
     h1 {
       position: static;
@@ -74,9 +73,13 @@
     }
 
     p {
-      margin-top: 0;
+      white-space: normal;
+      overflow: visible;
+      text-overflow: clip;
+      word-break: break-word;
       font-size: 3rem;
       text-align: center;
+      margin-top: 0;
     }
   }
 }
@@ -84,18 +87,19 @@
 .button {
   margin-top: 0.75rem;
   padding: 1.25rem 3rem;  // veći padding za veće dugme
-  font-family:'Oswald';
+  font-family: 'Oswald';
   font-size: 1.75rem;     // veći font
   font-weight: 600;
   color: white;
-  background-color:colors.$red;
+  background-color: #{colors.$red};
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  text-decoration: none;
 
   &:hover {
-    background-color:colors.$hover-red;
+    background-color: #{colors.$hover-red};
   }
 
   @media #{$phone} {
@@ -104,4 +108,10 @@
   }
 }
 
+.content h1,
+.content p,
+.button {
+  will-change: transform;
+  transition: transform 0.3s ease-out;
+}
 

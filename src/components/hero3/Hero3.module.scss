@@ -1,0 +1,59 @@
+@use '../../utils/colors.scss' as colors;
+
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  background-color: #{colors.$white};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/assets/hero3/bg.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  will-change: background-position;
+}
+
+.content {
+  padding: 2rem 3rem;
+  border-radius: 12px;
+  color: #{colors.$white};
+  font-family: 'Oswald', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  h1 {
+    font-size: 5rem;
+    text-align: center;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+  }
+
+  .button {
+    align-self: flex-end;
+  }
+}
+
+.button {
+  text-decoration:none;
+  background-color: #{colors.$red};
+  color: #{colors.$white};
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #{colors.$hover-red};
+  }
+}
+

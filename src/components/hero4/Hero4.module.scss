@@ -1,0 +1,123 @@
+@use '../../utils/colors.scss' as colors;
+@use '../../utils/mediaqueries.scss' as *;
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: colors.$white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  overflow: hidden;
+  
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0;
+    background-image: url('/assets/hero4/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    will-change: transform;
+    z-index: 0;
+    transform: translateY(0);
+    transition: transform 0.1s ease-out;
+  }
+  
+  @media #{$phone} {
+    justify-content: center;
+    padding: 1rem;
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+  margin-right: 2%;
+  border-radius: 12px;
+  color: colors.$white;
+  font-family: 'Oswald', sans-serif;
+  display: flex;
+  flex-direction: row;  // već je tako
+  align-items: center;
+  gap: 2rem;  // malo veći razmak između tekst+button i mape
+  text-align: center;
+  max-width: 90%;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media #{$phone} {
+    margin-right: 0;
+    padding: 1.5rem;
+    max-width: 100%;
+    flex-direction: column; // na mobilnom stave jedan ispod drugog
+    gap: 1rem;
+  }
+
+ .textContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem; // dodato: razmak između title i button-a
+    
+    h1 {
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      font-size: 5rem;
+      margin: 0;
+      line-height: 0.9; // dodato: smanjen razmak između redova
+      
+      @media #{$phone} {
+        font-size:3rem;
+        word-spacing: -0.15em;
+        line-height: 0.8; // još manji razmak na mobilnom
+      }
+    }
+  }
+}
+.mapContainer {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+
+  iframe {
+    min-height: 300px;  // povećana visina mape
+    width: 100%;
+    border-radius: 8px;
+    border: 0;
+  }
+}
+
+.button {
+  margin-top: 0.75rem;
+  padding: 1.25rem 3rem;
+  font-family: 'Oswald';
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  background-color: #{colors.$red};
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease-out;
+  white-space: nowrap;
+  
+  &:hover {
+    transform: translateY(-10px);
+    background-color: #{colors.$hover-red};
+  }
+  
+  @media #{$phone} {
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
+  }
+}
+

@@ -1,16 +1,28 @@
-import styles from "./Navbar.module.scss";
+import { NavLink } from 'react-router-dom';
+import styles from './Navbar.module.scss';
+import { NAV_LINKS } from '../../constants/routes';
 
-function Navbar() {
+type Props = {
+  hidden: boolean;
+};
+
+function Navbar({ hidden }: Props) {
   return (
-    <nav className={styles.navbar}>
+    <nav className={`${styles.navbar} ${hidden ? styles.hidden : ''}`}>
       <div className={styles.logo}>
-        <img src="./logo.png" alt="Logo" />
+        <img src="/logo.png" alt="Logo" />
       </div>
       <ul className={styles.navList}>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#onama">O nama</a></li>
-        <li><a href="#usluge">Usluge</a></li>
-        <li><a href="#kontakt">Kontakt</a></li>
+        {NAV_LINKS.map(({ path, label }) => (
+          <li key={path}>
+            <NavLink
+              to={path}
+              className={({ isActive }) => (isActive ? styles.active : '')}
+            >
+              {label}
+            </NavLink>
+          </li>
+        ))}
       </ul>
     </nav>
   );

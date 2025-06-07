@@ -1,17 +1,31 @@
 @use './utils/mediaqueries.scss' as *;
+
+.appWrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
+/* Desktop navbar */
 .desktopNav {
   display: block;
-
+  flex-shrink: 0;
+  
   @media #{$phone} {
     display: none;
   }
 }
 
+/* Mobilni meni (BurgerMenu) */
 .mobileNav {
   display: none;
-
+  flex-shrink: 0;
+  
   @media #{$phone} {
     display: block;
   }
 }
-

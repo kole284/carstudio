@@ -1,21 +1,114 @@
 @use '../../utils/colors.scss' as colors;
+@use '../../utils/mediaqueries.scss' as *;
+
+.hero2 {
+  width: 100%;
+  position: relative;
+}
 
 .wrapper {
-  width:100%;
-  height:100vh;
-  background-color:colors.$white;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background-image: url('/assets/hero2/bg.jpeg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #{colors.$white};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow-x: hidden;
+  padding: 4rem 2rem;
+  box-sizing: border-box;
+}
+
+.backgroundSvg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  max-width: 100vw;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+  transform: translateX(-50%) translateZ(0);
+  backface-visibility: hidden;
+  
+  @media #{$phone} {
+    // Na mobilnom isključi parallax optimizacije
+    will-change: auto;
+    transform: translateX(-50%);
+  }
 }
 
 .card-container {
-  display:flex;
-  flex-direction:row;
-  justify-content:space-between;
-  gap:2%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 3rem;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  
+  & > div {
+    width: 300px;
+    transition: transform 0.1s ease-out; // smooth transition za parallax
+    
+    // Desktop parallax optimizacije
+    @media (min-width: 769px) {
+      will-change: transform;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+    }
+    
+    @media #{$phone} {
+      // Na mobilnom bez parallax optimizacija
+      will-change: auto;
+      transform: none !important; // forsira normalan prikaz
+      transition: none;
+    }
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+  width: 100%;
+  transition: transform 0.1s ease-out; // smooth transition za parallax
+  
+  // Desktop parallax optimizacije
+  @media (min-width: 769px) {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  
+  @media #{$phone} {
+    will-change: auto;
+    transform: none !important; // forsira normalan prikaz
+    transition: none;
+  }
+}
+
+.button {
+  padding: 1rem 2.5rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+  background-color: #{colors.$red};
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease-out;
+  text-decoration: none;
+  
+  &:hover {
+    background-color: #{colors.$hover-red};
+    transform: translateY(-5px);
+  }
 }

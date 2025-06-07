@@ -1,0 +1,37 @@
+@use '../../utils/mediaqueries.scss' as *;
+@use '../../utils/colors.scss' as colors;
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  overflow-x: hidden;
+
+}
+
+.card-container {
+ display: flex;
+  flex-wrap: nowrap;
+  gap: 2rem;
+  align-items:center;
+  justify-content: center;
+  max-width: 1200px;
+  width: 100%;
+  box-sizing: border-box;    // <-- DODATO
+
+  > * {
+    transition: transform 0.7s ease-in-out, box-shadow 0.7s ease-in-out;
+    cursor: pointer;
+  }
+
+  > *:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+  }   overflow-x: hidden;
+  @media #{$phone} {
+    flex-direction:column;
+  }
+
+}
+

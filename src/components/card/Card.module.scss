@@ -1,41 +1,38 @@
 .card {
-  width: 30vw;
-  height: 60vh;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  background-color: white;
-  transition: box-shadow 0.3s ease;
+  background-color: white; // obavezno
+  border-radius: 10px;
+  padding: 0.5rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // osnovna senka
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;  
 
   &:hover {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); // jača senka
+    transform: translateY(-5px);
   }
-}
+  
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+  }
 
-.image {
-  margin-top: 1rem;
-  width: 150px;
-  height: 75px;
-  object-fit: contain;
-}
-
-.title {
-  margin: 1rem 0 0.5rem 0;
-  font-family: 'Oswald', sans-serif;
-  font-size: 1.5rem;
-  color: #222;
-  text-align: center;
-}
-
-.text {
-  padding: 0 1rem 1rem 1rem;
-  font-family: 'Oswald', sans-serif;
-  font-size: 1.2rem;
-  color: #333;
-  text-align: center;
+  h3 {
+    font-family:'Oswald';
+    font-weight:400;
+    font-size:2rem;
+  }
+  p {
+    font-size: 1.5rem;
+    font-family:'Oswald';
+    font-weight:300;
+    color: #333;
+    margin: 0;
+  }
 }
 

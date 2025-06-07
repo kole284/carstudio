@@ -1,0 +1,109 @@
+@use '../../utils/colors.scss' as colors;
+
+.card {
+  width: 45vw;
+  height: 80%;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; // Sprečava overflow na card nivou
+}
+
+// Sticky header - slika i naslov
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 1.5rem 1rem 1.5rem;
+  background: white;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  flex-shrink: 0; // Ne dozvoljava smanjivanje header-a
+}
+
+.image {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.mainTitle {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.8rem;
+  color: #222;
+  margin: 0;
+}
+
+// Scrollable content area
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(161, 39, 39, 0.6);
+    border-radius: 4px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+}
+
+// Kontejner za svaki servis
+.serviceContainer {
+  margin-bottom: 1.5rem;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Kontejner za service title
+.serviceTitleContainer {
+  cursor: pointer;
+  padding: 0.5rem 0;
+  transition: background-color 0.2s ease;
+  border-radius: 4px;
+  
+  &:hover {
+    background-color: rgba(161, 39, 39, 0.05);
+  }
+}
+
+.serviceTitle {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.3rem;
+  color: #333;
+  margin: 0;
+  transition: color 0.3s ease;
+  
+  .serviceTitleContainer:hover & {
+    color: colors.$hover-red;
+  }
+}
+
+// Detalji servisa - prikazuju se ispod title-a
+.serviceDetails {
+  margin-top: 0.8rem;
+  font-size: 1.2rem;
+  font-family: 'Oswald';
+  font-weight: 300;
+  color: #555;
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-left: 3px solid colors.$hover-red;
+  line-height: 1.4;
+}

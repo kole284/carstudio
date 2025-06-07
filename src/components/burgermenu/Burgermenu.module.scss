@@ -1,7 +1,8 @@
+@use '../../utils/colors.scss' as colors;
 .wrapper {
   position: fixed;
   top: 2%;
-  right: 1%;
+  right: 3%;
   z-index: 1000;
 }
 
@@ -16,7 +17,7 @@
   span {
     display: block;
     height: 4px;
-    background-color: black;
+    background-color:colors.$red;
     border-radius: 2px;
   }
 }
@@ -55,25 +56,30 @@
     margin: 1rem 0;
   }
 
-  a {
-    color: white;
-    font-size: 3rem;
-    font-family: 'Oswald', sans-serif;
-    font-weight: 300;
-    text-decoration: none;
-    display: inline-block;
-    min-width: 200px;
-    text-align: center;
-    transition: transform 0.1s ease;
+ a {
+  color: white;
+  font-size: 3rem;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  text-decoration: none;
+  display: inline-block;
+  min-width: 200px;
+  text-align: center;
+  transition: transform 0.1s ease;
 
-    &:hover {
-      transform: scale(1.1);
-    }
-
-    &:active {
-      transform: scale(1.1);
-    }
+  &:hover {
+    transform: scale(1.1);
   }
+
+  &:active {
+    transform: scale(1.1);
+  }
+}
+
+a.active {
+  color: #e63946;
+  font-weight: 500;
+}
 }
 .open {
 	opacity: 1 !important;
@@ -98,12 +104,12 @@
 }
 .logo {
   position: absolute;
-  top:0; 
-  left: 50;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
 
   img {
-    width: 180px;  // prilagodi po želji
+    width: 180px;
     height: auto;
   }
 }
-
