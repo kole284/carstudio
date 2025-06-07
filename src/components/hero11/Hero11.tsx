@@ -1,6 +1,6 @@
 import styles from './Hero11.module.scss';
 import Card4 from '../card4/Card4.tsx';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef} from 'react';
 
 function Hero11() {
   const totalImages = 5;

@@ -34,8 +34,14 @@ function App() {
     <div className={styles.appWrapper}>
       <div className={styles.content}>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          <Route
+  path="/"
+  element={
+    <Home
+    />
+  }
+/>
+<Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

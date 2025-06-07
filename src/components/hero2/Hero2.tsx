@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './Hero2.module.scss';
 import Card from '../card/Card.tsx';
 
-function Hero2({ onVisible }: { onVisible: (visible: boolean, id: string) => void }) {
+function Hero2() {
   const ref = useRef<HTMLDivElement>(null);
   const [scrollY, setScrollY] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);

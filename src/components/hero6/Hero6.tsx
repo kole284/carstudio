@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 function Hero6() {
   const [active, setActive] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState('');
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState('');
 
