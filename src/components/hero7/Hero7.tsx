@@ -95,7 +95,7 @@ function Hero7(){
       <div className={styles.wrapper}>
          <div ref={containerRef} className={styles['card-container']}>
             <div 
-               ref={(el) => cardsRef.current[0] = el}
+               ref={(el) =>{ cardsRef.current[0] = el}}
                className={styles['card-wrapper']}
             >
                <Card2 image="/assets/hero7/camera.png">
@@ -103,7 +103,7 @@ function Hero7(){
                </Card2>
             </div>
             <div 
-               ref={(el) => cardsRef.current[1] = el}
+               ref={(el) => {cardsRef.current[1] = el}}
                className={styles['card-wrapper']}
             >
                <Card2 image="/assets/hero7/placeholder.png">
@@ -111,7 +111,7 @@ function Hero7(){
                </Card2>
             </div>
             <div 
-               ref={(el) => cardsRef.current[2] = el}
+               ref={(el) => {cardsRef.current[2] = el}}
                className={styles['card-wrapper']}
             >
                <Card2 image="/assets/hero7/clock.png">
@@ -119,7 +119,7 @@ function Hero7(){
                </Card2>
             </div>
             <div 
-               ref={(el) => cardsRef.current[3] = el}
+               ref={(el) => {cardsRef.current[3] = el}}
                className={styles['card-wrapper']}
             >
                <Card2 image="/assets/hero7/telephone.png">

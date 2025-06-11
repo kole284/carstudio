@@ -178,7 +178,7 @@ function Hero11() {
         {cardData.map((card, index) => (
           <div
             key={index}
-            ref={el => cardRefs.current[index] = el}
+            ref={el => { cardRefs.current[index] = el}}
             className={`${styles.cardAnimation} ${isMobile ? styles.noHover : ''}`}
             style={{'--delay': `${index * 0.2}s`} as React.CSSProperties}
             onMouseEnter={handleCardInteraction}

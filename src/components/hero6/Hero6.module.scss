@@ -1,5 +1,6 @@
 @use '../../utils/colors.scss' as colors;
 @use '../../utils/mediaqueries.scss' as *;
+@use 'sass:color';
 
 .wrapper {
   width: 100%;
@@ -204,7 +205,7 @@
   transition: color 0.2s ease;
   
   &:hover {
-    color: darken(colors.$red, 15%);
+    color: color.adjust(colors.$red, $lightness: -15%);
   }
 }
 

@@ -86,6 +86,11 @@ function Hero8() {
 
   return (
     <div className={styles.wrapper} ref={ref}>
+      {/* Dodajemo pozadinu koja koristi offsetY za parallax efekat */}
+      <div
+        className={styles.background}
+        style={{ transform: `translateY(${offsetY * 0.5}px)` }}
+      />
       <div className={styles.content}>
         <h1 
           style={{ 

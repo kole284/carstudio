@@ -29,9 +29,7 @@ function Hero2() {
 
     const heroTop = ref.current.offsetTop;
     const heroHeight = ref.current.offsetHeight;
-    const heroBottom = heroTop + heroHeight;
     const viewportTop = scrollY;
-    const viewportBottom = scrollY + window.innerHeight;
     const viewportCenter = viewportTop + (window.innerHeight / 2);
     const heroCenter = heroTop + (heroHeight / 2);
     
