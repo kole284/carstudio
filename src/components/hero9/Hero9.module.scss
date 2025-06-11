@@ -1,18 +1,20 @@
 @use '../../utils/colors.scss' as colors;
 @use '../../utils/mediaqueries.scss' as *;
+
 .wrapper {
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 2rem;
   overflow: hidden;
   text-align: center;
   background-image: url('/assets/hero9/bg.svg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
+  position: relative;
 }
 
 .gallery {
@@ -22,18 +24,16 @@
   height: 85vh;
   display: flex;
   border-radius: 20px;
-  margin-left: 2%;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   box-shadow: 
     0 20px 40px rgba(0, 0, 0, 0.1),
     0 15px 12px rgba(0, 0, 0, 0.05);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   
   &:hover {
-    transform: translateY(-8px) scale(1.02);
     box-shadow: 
       0 30px 60px rgba(0, 0, 0, 0.15),
       0 20px 20px rgba(0, 0, 0, 0.08);
@@ -79,6 +79,16 @@
       0 5px 15px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
     border: 3px solid rgba(255, 255, 255, 0.8);
+    
+    &.fade-out {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    &.fade-in {
+      opacity: 1;
+      transform: scale(1);
+    }
     
     &:hover {
       transform: scale(1.05);
@@ -139,46 +149,79 @@
       &:active {
         transform: scale(0.95);
       }
+      
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+      }
     }
+  }
+}
+
+// Fade animacije - jednostavne i glatke  
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
 .card-container {
-  width: 50%;
+  width: auto;
+  flex: 0 0 auto;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5%;
-  transition: transform 0.3s ease;
+  transition: box-shadow 0.3s ease;
 
   &:hover {
-    transform: translateY(-10px);
+    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.1));
   }
 }
+
 @media #{$phone} {
   .wrapper {
-    flex-direction: column;  // POSTAVLJAMO JEDAN ISPOD DRUGOG
-    align-items: center;     // centriraj horizontalno
-    height: auto;            // da visina nije fiksna, nego se prilagodi
-    padding: 1rem;           // možeš smanjiti padding na mobilnom
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    padding: 1rem;
+    gap: 1rem;
   }
 
   .gallery {
-    width: 100%;      // zauzima celu širinu na mobilnom
-    height: auto;     // automatska visina da se prilagodi sadržaju
-    margin-right: 0;  // ukloni marginu sa desne strane
-    margin-bottom: 1.5rem;  // razmak ispod galerije
+    width: 100%;
+    height: auto;
+    margin-bottom: 1.5rem;
 
     .controls {
-      display: none;  // strelice nestaju
+      display: none;
     }
+    
     .imageWrapper {
       padding: 1rem;
     }
+    
     .image {
       max-width: 100%;
       max-height: 70vh;
+      
       &:hover {
         transform: none;
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1),
@@ -188,15 +231,15 @@
   }
 
   .card-container {
-    width: 100%;      // zauzima celu širinu ispod galerije
-    margin-left: 0;   // ukloni marginu sa leve strane
-    margin-right: 0;  // ukloni marginu sa desne strane
-    height: auto;     // visina da se prilagodi
-  > div {
-    width:100%;
-  }
-
+    width: 100%;
+    height: auto;
+    
+    &:hover {
+      transform: translateY(0);
+    }
+    
+    > div {
+      width: 100%;
+    }
   }
 }
-
-

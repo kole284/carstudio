@@ -1,22 +1,30 @@
 @use '../../utils/mediaqueries' as *;
 @use '../../utils/colors' as colors;
 
-.wrapper{
+.wrapper {
   position: relative;
   width: 100%;
   height: 100vh;
   overflow: hidden;
   display: flex;
   align-items: center;
-  justify-content: center; // desno na desktopu
+  justify-content: center;
   text-align: center;
   color: colors.$white;
   background-image: url('/assets/hero/bg.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  text-align: center;
 
+  // 🔽 Overlay za dimovanje
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); // intenzitet dimovanja
+    z-index: 1; // ispod .content (koji je z-index: 2)
+  }
 }
 
 .slide {

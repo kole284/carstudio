@@ -18,10 +18,9 @@ function Hero9() {
 
   const totalImages = 21;
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [fade, setFade] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [currentImageClass, setCurrentImageClass] = useState('');
 
-  // Dodajemo useRef za touch koordinate (isto kao u Hero11)
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
 
@@ -48,23 +47,33 @@ function Hero9() {
   const prevSlide = () => {
     if (isAnimating) return;
     setIsAnimating(true);
-    setFade(false);
+    setCurrentImageClass(styles['fade-out']);
+    
     setTimeout(() => {
       setCurrentIndex(prev => (prev === 0 ? totalImages - 1 : prev - 1));
-      setFade(true);
-      setIsAnimating(false);
-    }, 500);
+      setCurrentImageClass(styles['fade-in']);
+      
+      setTimeout(() => {
+        setCurrentImageClass('');
+        setIsAnimating(false);
+      }, 300);
+    }, 300);
   };
 
   const nextSlide = () => {
     if (isAnimating) return;
     setIsAnimating(true);
-    setFade(false);
+    setCurrentImageClass(styles['fade-out']);
+    
     setTimeout(() => {
       setCurrentIndex(prev => (prev + 1) % totalImages);
-      setFade(true);
-      setIsAnimating(false);
-    }, 500);
+      setCurrentImageClass(styles['fade-in']);
+      
+      setTimeout(() => {
+        setCurrentImageClass('');
+        setIsAnimating(false);
+      }, 300);
+    }, 300);
   };
 
   const currentImage = `/assets/services/${currentIndex + 1}.jpg`;
@@ -77,19 +86,18 @@ function Hero9() {
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        <div className={`${styles.imageWrapper} ${fade ? styles.fadeIn : styles.fadeOut}`}>
+        <div className={styles.imageWrapper}>
           <img
             src={currentImage}
             alt={`Slika ${currentIndex + 1}`}
-            className={styles.image}
+            className={`${styles.image} ${currentImageClass}`}
             loading="lazy"
             draggable={false}
           />
         </div>
-
         <div className={styles.controls}>
-          <button onClick={prevSlide} aria-label="Prethodna slika">&#10094;</button>
-          <button onClick={nextSlide} aria-label="Sledeća slika">&#10095;</button>
+          <button onClick={prevSlide} aria-label="Prethodna slika" disabled={isAnimating}>&#10094;</button>
+          <button onClick={nextSlide} aria-label="Sledeća slika" disabled={isAnimating}>&#10095;</button>
         </div>
       </div>
       <div className={styles['card-container']}>
@@ -100,4 +108,3 @@ function Hero9() {
 }
 
 export default Hero9;
-

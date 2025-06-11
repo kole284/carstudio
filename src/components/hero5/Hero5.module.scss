@@ -1,25 +1,34 @@
 @use '../../utils/colors.scss' as colors;
 @use '../../utils/mediaqueries.scss' as *;
-
 .wrapper {
+  position: relative;
   width: 100%;
   height: 100vh;
-  background-color: colors.$white;
+  overflow: hidden;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: colors.$white;
   background-image: url('/assets/hero5/bg.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  text-align: center;
-  padding: 2rem 3rem;
 
-  box-sizing: border-box;  // <-- dodato
-  overflow-x: hidden;      // <-- dodato
-  @media #{$phone} {
-  background-image:url('/assets/hero5/bg-p.jpg')}
+  // 🔽 Overlay za dimovanje
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); // intenzitet dimovanja
+    z-index: 1; // ispod .content (koji je z-index: 2)
+  }
 }
+.content {
+  z-index:2;
+}
+
 h1 {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-size: 5rem;

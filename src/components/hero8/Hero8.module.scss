@@ -1,18 +1,30 @@
 @use '../../utils/colors.scss' as colors;
 
 .wrapper {
+  position: relative;
   width: 100%;
   height: 100vh;
-  background-color: colors.$white;
+  overflow: hidden;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: colors.$white;
   background-image: url('/assets/hero8/bg.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  text-align: center;
-  padding: 2rem 3rem;
+  z-index: 1; // Dodano da ostane ispod sledećeg sadržaja
+  
+  // 🔽 Overlay za dimovanje
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); // intenzitet dimovanja
+    z-index: 1; // ispod .content (koji je z-index: 2)
+  }
 }
 
 .content {
@@ -31,6 +43,8 @@ h1 {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-family: 'Oswald';
   margin: 0;
+  transition: transform 0.1s ease-out, opacity 0.1s ease-out; // Smooth transitions
+  will-change: transform, opacity; // Optimizacija za performance
 }
 
 .button {
@@ -41,13 +55,14 @@ h1 {
   font-family: 'Oswald';
   font-weight: 600;
   font-size: 1.5rem;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, transform 0.1s ease-out, opacity 0.1s ease-out;
   border: none;
-  border-radius:5px;
+  border-radius: 5px;
   outline: none;
-
+  cursor: pointer;
+  will-change: transform, opacity; // Optimizacija za performance
+  
   &:hover {
     background: colors.$hover-red;
   }
 }
-

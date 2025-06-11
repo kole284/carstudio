@@ -1,19 +1,82 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Hero10.module.scss';
 
 function Hero10() {
+  const ref = useRef<HTMLDivElement>(null);
   const [offsetY, setOffsetY] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
     const handleScroll = () => {
-      setOffsetY(window.pageYOffset);
+      if (!ref.current) return;
+      const rect = ref.current.getBoundingClientRect();
+      setOffsetY(-rect.top);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Koristimo passive: true za bolje performanse
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleResize);
+    
+    // postavi početnu vrednost odmah
+    handleScroll();
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
+
+  // Funkcija za računanje parallax efekta za elemente
+  const getElementParallax = (direction: 'left' | 'right', speed: number = 0.2) => {
+    if (!ref.current) return 'translateX(0px)';
+    
+    const elementTop = ref.current.offsetTop;
+    const elementHeight = ref.current.offsetHeight;
+    const elementCenter = elementTop + (elementHeight / 2);
+    const viewportCenter = window.scrollY + (window.innerHeight / 2);
+    
+    if (isMobile) {
+      // Mobilna logika - animacija staje kada su elementi centrirani
+      const distanceFromHeroCenter = Math.abs(viewportCenter - elementCenter);
+      const proximityThreshold = elementHeight * 0.3; // 30% visine sekcije kao zona "bliskosti"
+      
+      // Ako smo blizu centra sekcije, nema animacije (elementi su centrirani)
+      if (distanceFromHeroCenter < proximityThreshold) {
+        return 'translateX(0px)';
+      }
+      
+      // Računamo progress samo kada se udaljujemo
+      let progress = 0;
+      
+      if (viewportCenter < elementCenter - proximityThreshold) {
+        // Sekcija je ispod nas (skrolujemo gore, sekcija se "udaljava" dole)
+        const maxDistance = elementHeight + window.innerHeight;
+        const actualDistance = elementCenter - viewportCenter - proximityThreshold;
+        progress = Math.min(1, actualDistance / maxDistance);
+        progress = -progress; // Negativan za animaciju "prema gore"
+      } else if (viewportCenter > elementCenter + proximityThreshold) {
+        // Sekcija je iznad nas (skrolujemo dole, sekcija se "udaljava" gore)
+        const maxDistance = elementHeight + window.innerHeight;
+        const actualDistance = viewportCenter - elementCenter - proximityThreshold;
+        progress = Math.min(1, actualDistance / maxDistance);
+      }
+      
+      const multiplier = direction === 'left' ? -1 : 1;
+      const offset = progress * speed * 120 * multiplier;
+      return `translateX(${offset}px)`;
+    } else {
+      // Desktop logika - postojeća logika
+      const distanceFromCenter = viewportCenter - elementCenter;
+      const multiplier = direction === 'left' ? -1 : 1;
+      const offset = distanceFromCenter * speed * multiplier;
+      return `translateX(${offset}px)`;
+    }
+  };
 
   const handleClick = () => {
     const hero6 = document.getElementById('hero6');
@@ -22,8 +85,8 @@ function Hero10() {
     }
   };
 
-    return (
-    <div className={styles.wrapper}>
+  return (
+    <div className={styles.wrapper} ref={ref}>
       <div
         className={styles.background}
         style={{ transform: `translateY(${offsetY * 0.5}px)` }}
@@ -32,8 +95,24 @@ function Hero10() {
         className={styles.content}
         style={{ transform: `translateY(${offsetY * 0.3}px)` }}
       >
-        <h1>Kontaktirajte nas</h1>
-        <Link to="/contact"className={styles.button} onClick={handleClick}>
+        <h1 
+          className={styles.title}
+          style={{
+            transform: getElementParallax('right', isMobile ? 1.2 : 0.25),
+            transition: 'transform 0.1s ease-out',
+          }}
+        >
+          Kontaktirajte nas
+        </h1>
+        <Link 
+          to="/contact" 
+          className={styles.button} 
+          onClick={handleClick}
+          style={{
+            transform: getElementParallax('left', isMobile ? 1.2 : 0.3),
+            transition: 'transform 0.1s ease-out',
+          }}
+        >
           Više informacija
         </Link>
       </div>
@@ -42,4 +121,3 @@ function Hero10() {
 }
 
 export default Hero10;
-

@@ -13,6 +13,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   position: relative;
   overflow: hidden;
   padding: 4rem 2rem;
@@ -30,71 +31,61 @@
   pointer-events: none;
   z-index: 0;
   will-change: transform;
-  transform: translateX(-50%) translateZ(0);
-  backface-visibility: hidden;
+  transform: translateX(-50%);
   
-  @media #{$phone} {
-    // Na mobilnom isključi parallax optimizacije
-    will-change: auto;
-    transform: translateX(-50%);
+  @media (min-width: 769px) {
+    // Desktop parallax optimizacije
+    transform: translateX(-50%) translateZ(0);
+    backface-visibility: hidden;
   }
 }
 
 .card-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  gap: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3rem;
   flex-wrap: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding-bottom: 1rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 2rem 0;
+  z-index: 1;
 
-  & > div {
-    width: 300px;
-    transition: transform 0.1s ease-out;
-
-    @media (min-width: 769px) {
-      will-change: transform;
-      flex-direction: column;
-      transform: translateZ(0);
-      backface-visibility: hidden;
-    }
-
-    @media #{$phone} {
-      will-change: auto;
-      flex-direction: column;
-      transform: none !important;
-      transition: none;
-    }
-  }
-
-  // DODAJ OVO:
   @media #{$phone} {
-    z-index:3;
     flex-direction: column;
     align-items: center;
-    overflow-x: visible;
+    gap: 2rem;
   }
 }
+
+.cardWrapper {
+  width: 300px;
+  flex-shrink: 0;
+  will-change: transform, opacity;
+  
+  @media (min-width: 769px) {
+    max-width: 350px;
+    flex: 1;
+  }
+  
+  @media #{$phone} {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
 .button-container {
   display: flex;
   justify-content: center;
   z-index: 2;
   width: 100%;
-  transition: transform 0.1s ease-out; // smooth transition za parallax
+  will-change: transform, opacity;
   
-  // Desktop parallax optimizacije
   @media (min-width: 769px) {
-    will-change: transform;
+    // Desktop parallax optimizacije
     transform: translateZ(0);
     backface-visibility: hidden;
-  }
-  
-  @media #{$phone} {
-    will-change: auto;
-    transform: none !important; // forsira normalan prikaz
-    transition: none;
   }
 }
 
@@ -113,6 +104,20 @@
   
   &:hover {
     background-color: #{colors.$hover-red};
-    transform: translateY(-5px);
+    transform: translateY(-3px);
   }
+  
+  &:active {
+    transform: translateY(-1px);
+  }
+}
+
+// Cleanup - uklanjamo nepotrebne stilove
+.animate {
+  // Ova klasa se koristi samo za JavaScript logiku
+}
+
+// Mobilna slide animacija
+.slideIn {
+  // Ova klasa se koristi za mobilne slide animacije
 }

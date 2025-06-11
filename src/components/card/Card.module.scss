@@ -1,20 +1,40 @@
+@use '../../utils/mediaqueries.scss' as *;
+
 .card {
-  background-color: white; // obavezno
+  background-color: white;
   border-radius: 10px;
   padding: 0.5rem;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // osnovna senka
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease, transform 0.2s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;  
-
-  &:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); // jača senka
-    transform: translateY(-5px);
-  }
+  justify-content: center;
   
+
+  // HOVER efekti (samo za desktop)
+  &:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    transform: translateY(-5px);
+
+    h3 {
+      background: linear-gradient(
+        90deg,
+        #d62828 0%,
+        #000000 50%,
+        #d62828 100%
+      );
+      background-size: 200% 100%;
+      background-position: 200% 0;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      animation: colorWaveText 2s linear infinite;
+    }
+  }
+
   img {
     width: 100px;
     height: 100px;
@@ -23,16 +43,61 @@
   }
 
   h3 {
-    font-family:'Oswald';
-    font-weight:400;
-    font-size:2rem;
+    font-family: 'Oswald';
+    font-weight: 400;
+    font-size: 2rem;
+    transition: none;
+    color: #000;
   }
+
   p {
     font-size: 1.5rem;
-    font-family:'Oswald';
-    font-weight:300;
+    font-family: 'Oswald';
+    font-weight: 300;
     color: #333;
     margin: 0;
+  }
+
+  // 🔻 Isključi SVE animacije i hover efekte na telefonima
+  @media #{$phone} {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); // malo jača senka
+    transform: none;
+    transition: none;
+
+    &:hover {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); // malo jača senka
+      transform: none;
+
+      h3 {
+        background: none;
+        color: #000;
+        -webkit-background-clip: unset;
+        -webkit-text-fill-color: unset;
+        animation: none;
+      }
+    }
+
+    h3 {
+      background: none;
+      color: #000;
+      -webkit-background-clip: unset;
+      -webkit-text-fill-color: unset;
+      animation: none;
+    }
+
+    p {
+      transition: none;
+    }
+  }
+}
+
+// Animacija gradijenta za desktop
+@keyframes colorWaveText {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
   }
 }
 

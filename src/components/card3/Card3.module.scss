@@ -9,6 +9,22 @@
   display: flex;
   flex-direction: column;
   overflow: hidden; // Sprečava overflow na card nivou
+    h3 {
+   background: linear-gradient(
+     90deg,
+     #d62828 0%,
+     #000000 50%,
+     #d62828 100%
+     );
+  background-size: 200% 100%;
+  background-position: 200% 0;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: colorWaveText 2s linear infinite;
+
+}
 }
 
 // Sticky header - slika i naslov
@@ -24,6 +40,7 @@
   top: 0;
   z-index: 10;
   flex-shrink: 0; // Ne dozvoljava smanjivanje header-a
+
 }
 
 .image {
@@ -120,3 +137,13 @@
     transform: translateY(0);
   }
 }
+@keyframes colorWaveText {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+

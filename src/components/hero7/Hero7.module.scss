@@ -1,52 +1,112 @@
 @use '../../utils/mediaqueries.scss' as *;
 @use '../../utils/colors.scss' as colors;
+
 .wrapper {
+  z-index: -1;
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 2rem;
+  padding: 2rem 4rem;
   box-sizing: border-box;
-  overflow-x: hidden;
   background-image: url('/assets/hero7/bg.svg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  overflow:hidden;
+  
   @media #{$phone} {
-    background-image:url('/assets/hero7/bg-p.svg')
+    background-image: url('/assets/hero7/bg.svg');
+    padding: 1rem;
   }
-
 }
 
 .card-container {
- display: flex;
-  flex-wrap: nowrap;
-  gap: 2rem;
-  align-items:center;
-  justify-content: center;
-  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
   width: 100%;
-  box-sizing: border-box;    // <-- DODATO
-
-  > * {
-    transition: transform 0.7s ease-in-out, box-shadow 0.7s ease-in-out;
-    cursor: pointer;
-  }
-
-  > *:hover {
-    transform: translateY(-15px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
-  }   overflow-x: hidden;
+  max-width: 1200px;
+  gap: 1rem;
+  
   @media #{$phone} {
-    flex-direction:column;
+    flex-direction: column;
+    gap: 1.5rem;
+    
+    &:focus {
+      outline: none;
+    }
   }
+}
+
+.card-wrapper {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  transition: transform 0.1s ease-out, box-shadow 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
+  outline: none;
+  will-change: transform; // važno za glatku animaciju
+  
+  // Prevent focus outline on click/touch
+  &:focus {
+    outline: none;
+  }
+  
+  // Prevent tap highlight on mobile
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  
+  &:hover {
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    filter: brightness(1.05);
+  }
+  
+  @media #{$phone} {
+    box-shadow: none;
+    cursor: default; // Remove pointer cursor on mobile since there's no hover
+    
+    // Extra protection against mobile focus/tap effects
+    &:focus, &:active, &:hover {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+  }
+}
+
 .link {
   color: colors.$black;
   text-decoration: none;
-
+  background: linear-gradient(
+     90deg,
+     #d62828 0%,
+     #000000 50%,
+     #d62828 100%
+  );
+  background-size: 200% 100%;
+  background-position: 200% 0;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: colorWaveText 2s linear infinite;
+  
   &:hover {
     color: colors.$hover-red;
   }
 }
 
+@keyframes colorWaveText {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 

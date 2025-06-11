@@ -16,13 +16,12 @@ function Hero() {
   }, []);
 
  return (
-    <section id="hero" className={styles.wrapper}>
+    <section id="hero" className={styles.wrapper}
+     style={{
+        transform: `translateY(${offsetY * 0.5}px)` // Alternativno rešenje
+        }}>
       <div
-        className={styles.slide}
-        style={{
-          transform: `translateY(${offsetY * 0.5}px)`, // Alternativno rešenje
-        }}
-      />
+        className={styles.slide}/>
       <div className={styles.content}>
         <h1 style={{ transform: `translateY(${offsetY * 0.2}px)` }}>
           CarStudio
